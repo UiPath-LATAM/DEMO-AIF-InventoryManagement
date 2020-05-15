@@ -1,0 +1,1 @@
+The current inventory for this item is greater than, or equal to, the expected sales next week. Therefore, we recommend to not increase inventory for next week.  

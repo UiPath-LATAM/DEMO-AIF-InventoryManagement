@@ -1,0 +1,1 @@
+The current inventory is <inventory> and we project <sales_number> sale(s) of this item next week. Therefore, we recommend you purchase <purchase_number> item(s).

@@ -1,0 +1,194 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Attended_Form" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="list_descriptions" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="list_inventory" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="list_predictions" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="out_list_purchases" Type="OutArgument(scg:List(x:String))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>957,1678</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Attended_Form" sap:VirtualizedContainerService.HintSize="917,1558" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of string)]" Name="list_explanations" />
+      <Variable x:TypeArguments="x:Int32" Name="counter" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of string)]" Name="list_purchases" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="875,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="875,1149" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_inventory]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="839,1015" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Int32" Name="tempPurchaseNum" />
+              <Variable x:TypeArguments="x:String" Name="tempExplanation" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[tempPurchaseNum]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[convert.ToInt32(list_predictions(counter)) - convert.ToInt32(item)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[tempPurchaseNum &gt; 0]" sap:VirtualizedContainerService.HintSize="797,661" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,513" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[list_purchases]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[tempPurchaseNum.ToString]" />
+                  <ui:ReadTextFile Content="[tempExplanation]" DisplayName="Read Text File" FileName="formExplanationNeedPurchase.txt" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[tempExplanation]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[tempExplanation.Replace("&lt;inventory&gt;", item)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[tempExplanation]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[tempExplanation.Replace("&lt;purchase_number&gt;", tempPurchaseNum.ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[tempExplanation]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[tempExplanation.Replace("&lt;sales_number&gt;", list_predictions(counter).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,213" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[list_purchases]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="0" />
+                  <ui:ReadTextFile Content="[tempExplanation]" DisplayName="Read Text File" FileName="formExplanationNOPurchase.txt" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_2" />
+                </Sequence>
+              </If.Else>
+            </If>
+            <AddToCollection x:TypeArguments="x:String" Collection="[list_explanations]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="797,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3" Item="[tempExplanation]" />
+            <Assign sap:VirtualizedContainerService.HintSize="797,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[counter + 1]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ufa:FormActivity Dismissed="{x:Null}" FormFieldsInputData="{x:Null}" FormFieldsOutputData="{x:Null}" FormTitle="{x:Null}" SelectedButton="{x:Null}" DisplayName="Create Form" FormHeight="400" FormSchema="%[{&quot;mask&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;numRows&quot;:6,&quot;type&quot;:&quot;table&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;table2&quot;,&quot;label&quot;:&quot;&quot;,&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;HTML&quot;,&quot;tag&quot;:&quot;h2&quot;,&quot;className&quot;:&quot;&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;Item&quot;,&quot;refreshOnChange&quot;:false,&quot;mask&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;html&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;HTML&quot;,&quot;tag&quot;:&quot;h2&quot;,&quot;className&quot;:&quot;&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;Explanation&quot;,&quot;refreshOnChange&quot;:false,&quot;mask&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;html2&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;HTML&quot;,&quot;tag&quot;:&quot;h2&quot;,&quot;className&quot;:&quot;&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;Purchase Number&quot;,&quot;refreshOnChange&quot;:false,&quot;mask&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;html3&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}],[{&quot;components&quot;:[{&quot;label&quot;:&quot;Item1&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Item1&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Explanation1&quot;,&quot;hideLabel&quot;:true,&quot;autoExpand&quot;:false,&quot;isUploadEnabled&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;wysiwyg&quot;:&quot;&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Explanation1&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;uploadUrl&quot;:&quot;&quot;,&quot;uploadOptions&quot;:&quot;&quot;,&quot;uploadDir&quot;:&quot;&quot;,&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Purchase1&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Purchase1&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;customConditional&quot;:&quot;&quot;,&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;logic&quot;:[]},{&quot;label&quot;:&quot;Explanation for Change&quot;,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;explanationForChange&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}],[{&quot;components&quot;:[{&quot;label&quot;:&quot;Item2&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Item2&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Explanation2&quot;,&quot;hideLabel&quot;:true,&quot;autoExpand&quot;:false,&quot;isUploadEnabled&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;wysiwyg&quot;:&quot;&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Explanation2&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;uploadUrl&quot;:&quot;&quot;,&quot;uploadOptions&quot;:&quot;&quot;,&quot;uploadDir&quot;:&quot;&quot;,&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Purchase2&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Purchase2&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]},{&quot;label&quot;:&quot;Explanation for Change&quot;,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;explanationForChange2&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}],[{&quot;components&quot;:[{&quot;label&quot;:&quot;Item3&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Item3&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Explanation3&quot;,&quot;hideLabel&quot;:true,&quot;autoExpand&quot;:false,&quot;isUploadEnabled&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;wysiwyg&quot;:&quot;&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Explanation3&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;uploadUrl&quot;:&quot;&quot;,&quot;uploadOptions&quot;:&quot;&quot;,&quot;uploadDir&quot;:&quot;&quot;,&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Purchase3&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Purchase3&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]},{&quot;label&quot;:&quot;Explanation for Change&quot;,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;explanationForChange3&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}],[{&quot;components&quot;:[{&quot;label&quot;:&quot;Item4&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Item4&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Explanation4&quot;,&quot;hideLabel&quot;:true,&quot;autoExpand&quot;:false,&quot;isUploadEnabled&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;wysiwyg&quot;:&quot;&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Explanation4&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;uploadUrl&quot;:&quot;&quot;,&quot;uploadOptions&quot;:&quot;&quot;,&quot;uploadDir&quot;:&quot;&quot;,&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Purchase4&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Purchase4&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]},{&quot;label&quot;:&quot;Explanation for Change&quot;,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;explanationForChange4&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}],[{&quot;components&quot;:[{&quot;label&quot;:&quot;Item5&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Item5&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Explanation5&quot;,&quot;hideLabel&quot;:true,&quot;autoExpand&quot;:false,&quot;isUploadEnabled&quot;:false,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;wysiwyg&quot;:&quot;&quot;,&quot;type&quot;:&quot;textarea&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Explanation5&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;logic&quot;:[],&quot;customConditional&quot;:&quot;&quot;,&quot;uploadUrl&quot;:&quot;&quot;,&quot;uploadOptions&quot;:&quot;&quot;,&quot;uploadDir&quot;:&quot;&quot;,&quot;reorder&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Purchase5&quot;,&quot;hideLabel&quot;:true,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;Purchase5&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;properties&quot;:{},&quot;tags&quot;:[],&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]},{&quot;label&quot;:&quot;Explanation for Change&quot;,&quot;showWordCount&quot;:false,&quot;showCharCount&quot;:false,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;key&quot;:&quot;explanationForChange5&quot;,&quot;defaultValue&quot;:&quot;&quot;,&quot;validate&quot;:{&quot;customMessage&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;conditional&quot;:{&quot;show&quot;:&quot;&quot;,&quot;when&quot;:&quot;&quot;,&quot;json&quot;:&quot;&quot;},&quot;widget&quot;:{&quot;type&quot;:&quot;&quot;},&quot;reorder&quot;:false,&quot;inputFormat&quot;:&quot;plain&quot;,&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[]}]}]],&quot;header&quot;:[],&quot;properties&quot;:{},&quot;customConditional&quot;:&quot;&quot;,&quot;logic&quot;:[],&quot;reorder&quot;:false},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;theme&quot;:&quot;primary&quot;,&quot;input&quot;:true,&quot;tableView&quot;:true}]" FormTheme="{}{&quot;Activities&quot;:[&quot;FORM&quot;,&quot;CALLOUT&quot;],&quot;Id&quot;:&quot;&quot;,&quot;Name&quot;:&quot;Cerulean&quot;,&quot;BaseCss&quot;:&quot;../../assets/css/themes/cerulean.bootstrap.min.css&quot;,&quot;ImageSrc&quot;:&quot;../../assets/themeicons/cerulean.png&quot;,&quot;OverrideCssUrl&quot;:&quot;&quot;,&quot;UserStyleOverrides&quot;:&quot;&quot;,&quot;Properties&quot;:&quot;&quot;,&quot;IsCustomTheme&quot;:false,&quot;Version&quot;:1,&quot;ThemeVersion&quot;:1}" FormWidth="800" GenerateInputFields="False" sap:VirtualizedContainerService.HintSize="875,77" sap2010:WorkflowViewState.IdRef="FormActivity_2" IsReadOnly="False">
+      <ufa:FormActivity.FormFieldsCollection>
+        <InArgument x:TypeArguments="x:String" x:Key="Item1">[list_descriptions(0)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Item2">[list_descriptions(1)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Item3">[list_descriptions(2)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Item4">[list_descriptions(3)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Item5">[list_descriptions(4)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Explanation1">[list_explanations(0)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Explanation2">[list_explanations(1)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Explanation3">[list_explanations(2)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Explanation4">[list_explanations(3)]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Explanation5">[list_explanations(4)]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="Purchase1">[list_purchases(0)]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="Purchase2">[list_purchases(1)]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="Purchase3">[list_purchases(2)]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="Purchase4">[list_purchases(3)]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="Purchase5">[list_purchases(4)]</InOutArgument>
+      </ufa:FormActivity.FormFieldsCollection>
+    </ufa:FormActivity>
+    <Assign sap:VirtualizedContainerService.HintSize="875,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[out_list_purchases]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[list_purchases]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>

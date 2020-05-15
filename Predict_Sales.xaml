@@ -1,0 +1,155 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Predict_Sales" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.MLServices;assembly=UiPath.MLServices" xmlns:uma="clr-namespace:UiPath.MLServices.Activities;assembly=UiPath.MLServices.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="list_timestamps" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="predictions" Type="OutArgument(scg:List(x:String))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1867,1704</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="23">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="588,1539" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of string)]" Name="predictions_list" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Predict_Sales" sap:VirtualizedContainerService.HintSize="546,1347" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="http://35.241.255.215/ai-deployer-develop/" Name="Orchestrator_URL" />
+        <Variable x:TypeArguments="x:String" Default="2315" Name="tenantID" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="504,1255" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[list_timestamps]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="past_sales" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="468,1120" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="426,1028" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="ML_Input" />
+                  <Variable x:TypeArguments="x:String" Name="ML_Output" />
+                  <Variable x:TypeArguments="njl:JObject" Name="jsonOut" />
+                  <Variable x:TypeArguments="njl:JObject" Name="prediction_json" />
+                  <Variable x:TypeArguments="ui:GenericValue" Name="myTest" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ReadTextFile Content="[ML_Input]" DisplayName="Read Text File" FileName="createPayload.txt" sap:VirtualizedContainerService.HintSize="384,80" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[ML_Input]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[ML_Input.Replace("&lt;replacer&gt;",past_sales.ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[ML_Input]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[ML_Input.Replace("\", "")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="384,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[ML_Input]" />
+                <uma:MLSkills ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Name="{x:Null}" NumberOfRetries="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" StatusCode="{x:Null}" TimeOutMs="{x:Null}" DisplayName="MLSkill" sap:VirtualizedContainerService.HintSize="384,352" sap2010:WorkflowViewState.IdRef="MLSkills_1" Item="[ML_Input]" JsonResponse="[ML_Output]" NextPageNum="2" RefreshList="False" TotalCount="2">
+                  <uma:MLSkills.MLSkillList>
+                    <scg:List x:TypeArguments="um:MLSkill" Capacity="4">
+                      <um:MLSkill AccessUri="https://aifabric.uipath.com/mlskills/host/48db1b7d-b530-4d8c-877b-6dc50027356a/analisesentimento" Description="Modelo analisa o sentimento baseado em um texto" Id="0e076ac0-118c-4f25-bf1d-5bfb1a32d4c1" InputDescription="Text to be analyzed.&#xA;For example: &quot;I am dissatisfied with this service.&quot;" InputType="JSON" Name="AnaliseSentimento" OutputDescription="JSON with class name and confidence on that class prediction (between 0-1) Class prediction can be one of: &quot;Very Negative&quot;, &quot;Negative&quot;, &quot;Neutral&quot;, &quot;Positive&quot;, &quot;Very Positive&quot;&#xA;For example:  '{&quot;sentiment&quot;: &quot;Very Negative&quot;, &quot;confidence&quot;: 0.97}'" TenantId="48db1b7d-b530-4d8c-877b-6dc50027356a" />
+                      <x:Reference>__ReferenceID0</x:Reference>
+                    </scg:List>
+                  </uma:MLSkills.MLSkillList>
+                  <uma:MLSkills.SelectedMLSkill>
+                    <um:MLSkill x:Name="__ReferenceID0" AccessUri="https://aifabric.uipath.com/mlskills/host/48db1b7d-b530-4d8c-877b-6dc50027356a/inventorymanagement" Description="The model will predict sales for the next time period." Id="d6d39230-98c7-479c-9e0f-187eb20a4093" InputDescription="List of past 12 periods of sales. Example: “[1,2,3,4,5,6,7,8,9,10,11,12]”" InputType="JSON" Name="InventoryManagement" OutputDescription="{}{“prediction”: &lt;Predicted Sales&gt;}&#xA;" TenantId="48db1b7d-b530-4d8c-877b-6dc50027356a" />
+                  </uma:MLSkills.SelectedMLSkill>
+                </uma:MLSkills>
+                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[prediction_json]" JsonString="[ML_Output]" />
+                <AddToCollection x:TypeArguments="x:String" Collection="[predictions_list]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="384,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[prediction_json(&quot;prediction&quot;).ToString]" />
+              </Sequence>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+    </Sequence>
+    <Assign sap:VirtualizedContainerService.HintSize="546,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[predictions]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[predictions_list]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>
