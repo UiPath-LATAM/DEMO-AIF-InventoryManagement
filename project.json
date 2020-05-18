@@ -1,6 +1,6 @@
 {
-  "name": "AIF_InventoryManagement",
-  "description": "Gerenciamento de Estoque com predição de ordem de compra de produtos baseados no AIFabric",
+  "name": "DEMO_AIF-InventoryManagement",
+  "description": "Demonstração do UIPath AIFabric utilizando um modelo ML personalizado de Gestão de Inventários de estoque para predição de ordem de compra de produtos",
   "main": "Main.xaml",
   "dependencies": {
     "Microsoft.Activities": "[1.0.1]",
