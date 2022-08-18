@@ -1,8 +1,6 @@
 # Pastas do projeto UiPath Studio
 .local/
 .settings/
-.tmh/
-.objects/
 
 # Arquivos de Video
 *.mp4
